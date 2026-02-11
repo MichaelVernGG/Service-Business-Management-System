@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Job Orders</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; table-layout: fixed; }
+        th, td { border: 1px solid #ddd; padding: 8px; word-wrap: break-word; }
+        th { background-color: #f2f2f2; }
+        th.id { width: 5%; }
+        th.customer { width: 15%; }
+        th.service { width: 15%; }
+        th.description { width: 25%; }
+        th.status { width: 10%; }
+        th.amount { width: 7%; }
+        th.payment { width: 8%; }
+        th.date { width: 10%; }
+        th.actions { width: 5%; }
+        a { text-decoration: none; color: #007BFF; }
+        a:hover { text-decoration: underline; }
+        button { padding: 5px 10px; margin-left: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<h2>Job Orders</h2>
+
+<div>
+    <a th:href="@{/jobs/new}"><button>Add New Job</button></a>
+    <a th:href="@{/dashboard}"><button>Back to Dashboard</button></a>
+</div>
+<br>
+
+<table>
+    <tr>
+        <th class="id">Job ID</th>
+        <th class="customer">Customer</th>
+        <th class="service">Service Type</th>
+        <th class="description">Description</th>
+        <th class="status">Status</th>
+        <th class="amount">Amount</th>
+        <th class="payment">Payment</th>
+        <th class="date">Date</th>
+        <th class="actions">Actions</th>
+    </tr>
+
+    <tr th:each="j : ${jobs}">
+        <td th:text="${j.id}"></td>
+        <td th:text="${j.customer.name}"></td>
+        <td th:text="${j.serviceType}"></td>
+        <td th:text="${j.description}"></td>
+        <td th:text="${j.status}"></td>
+        <td th:text="${j.amount}"></td>
+        <td th:text="${j.paymentStatus}"></td>
+        <td th:text="${j.date}"></td>
+        <td>
+            <a th:href="@{'/jobs/edit/' + ${j.id}}">Edit</a> |
+            <a th:href="@{'/jobs/delete/' + ${j.id}}">Delete</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

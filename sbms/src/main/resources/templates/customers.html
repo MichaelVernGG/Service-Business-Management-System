@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Customers</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            table-layout: fixed; /* Fixed layout */
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            word-wrap: break-word; /* Wrap long text */
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+        th.name { width: 20%; }
+        th.contact { width: 15%; }
+        th.address { width: 25%; }
+        th.notes { width: 30%; }
+        th.actions { width: 10%; }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        .top-buttons {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Customer Management</h2>
+
+<div class="top-buttons">
+    <a th:href="@{/dashboard}">
+        <button>Back to Dashboard</button>
+    </a>
+    <a th:href="@{/customers/new}">
+        <button>Add New Customer</button>
+    </a>
+    <a th:href="@{/jobs}"><button>Job Orders</button></a>
+</div>
+
+<form th:action="@{/customers/search}" method="get">
+    <input type="text" name="name" placeholder="Search by name"/>
+    <button type="submit">Search</button>
+</form>
+
+<br>
+
+<table>
+    <tr>
+        <th class="name">Name</th>
+        <th class="contact">Contact</th>
+        <th class="address">Address</th>
+        <th class="notes">Notes</th>
+        <th class="actions">Actions</th>
+    </tr>
+
+    <tr th:each="c : ${customers}">
+        <td th:text="${c.name}"></td>
+        <td th:text="${c.contactNumber}"></td>
+        <td th:text="${c.address}"></td>
+        <td th:text="${c.notes}"></td>
+        <td>
+            <a th:href="@{'/customers/edit/' + ${c.id}}">Edit</a>
+            |
+            <a th:href="@{'/customers/delete/' + ${c.id}}">Delete</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

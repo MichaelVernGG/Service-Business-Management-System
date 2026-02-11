@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f9;
+            padding: 30px;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        .card {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .title {
+            font-size: 14px;
+            color: gray;
+        }
+        .value {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        button {
+		    padding: 10px 20px;
+		    background-color: #4CAF50;
+		    color: white;
+		    border: none;
+		    border-radius: 5px;
+		    cursor: pointer;
+		}
+		button:hover {
+	  	 	background-color: #45a049;
+		}
+        
+    </style>
+</head>
+<body>
+
+<div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 20px;">
+    <h2 style="margin: 0;">Admin Dashboard</h2>
+    <a th:href="@{/customers}">
+        <button>Go to Customer Management</button>
+    </a>
+</div>
+
+
+<div class="container">
+    <div class="card">
+        <div class="title">Total Customers</div>
+        <div class="value" th:text="${totalCustomers}">0</div>
+    </div>
+
+    <div class="card">
+        <div class="title">Total Job Orders</div>
+        <div class="value" th:text="${totalJobOrders}">0</div>
+    </div>
+
+    <div class="card">
+        <div class="title">Today's Sales</div>
+        <div class="value" th:text="${todaySales}">0</div>
+    </div>
+
+    <div class="card">
+        <div class="title">Monthly Sales</div>
+        <div class="value" th:text="${monthlySales}">0</div>
+    </div>
+</div>
+
+</body>
+</html>
