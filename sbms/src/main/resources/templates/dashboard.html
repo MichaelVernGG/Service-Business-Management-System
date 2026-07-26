@@ -38,16 +38,69 @@
 		button:hover {
 	  	 	background-color: #45a049;
 		}
-        
+		.value-container {
+		    display: flex;
+		    align-items: center;
+		    gap: 10px;
+		}
+		.eye-btn {
+		    border: none;
+		    background: none;
+		    cursor: pointer;
+		    font-size: 18px;
+		}
+		.eye-btn:hover {
+		    opacity: 0.7;
+		}
     </style>
 </head>
 <body>
+ <script>
+       let hidden = false;
 
-<div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 20px;">
-    <h2 style="margin: 0;">Admin Dashboard</h2>
-    <a th:href="@{/customers}">
-        <button>Go to Customer Management</button>
-    </a>
+       function toggleSales() {
+           const sales = document.getElementById("totalSales");
+
+           if (hidden) {
+               sales.textContent = sales.dataset.value;
+           } else {
+               sales.textContent = "*******";
+           }
+
+           hidden = !hidden;
+       }
+   </script>
+
+<div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px; flex-direction: column">
+	<div>
+	    <h1 style="margin: 0;">Service Business Management System</h1>
+	</div>
+	
+	<div>
+		 <h2 style="margin: 0;">Admin Dashboard</h2>
+	</div>
+	<div>
+		 <br>
+		 <br>
+		 <br>
+	</div>
+    
+	
+	<div style="display: flex; gap: 10px;">
+        <a th:href="@{/customers}">
+            <button>Customer Management</button>
+        </a>
+        <a th:href="@{/jobs}">
+            <button>Job Orders</button>
+        </a>
+       <a th:href="@{/about}">
+            <button>About</button>
+        </a>
+         <form th:action="@{/logout}" method="post" style="display:inline;">
+ 	  		 <button type="submit">Logout</button>
+		</form>
+    </div>
+    
 </div>
 
 
@@ -70,6 +123,19 @@
     <div class="card">
         <div class="title">Monthly Sales</div>
         <div class="value" th:text="${monthlySales}">0</div>
+    </div>
+    <div class="card">
+        <div class="title">Total Sales</div>
+        <div class="value-container"><span id="totalSales"
+              class="value"
+              th:data-value="${totalSales}"
+              th:text="${totalSales}">
+            0
+        </span>
+         <button type="button" class="eye-btn" onclick="toggleSales()">
+            👁‍🗨
+        </button>
+        </div>
     </div>
 </div>
 

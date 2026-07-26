@@ -23,6 +23,7 @@ public class DashboardController {
         model.addAttribute("totalJobOrders", dashboardService.getTotalJobOrders());
         model.addAttribute("todaySales", dashboardService.getTodaySales());
         model.addAttribute("monthlySales", dashboardService.getMonthlySales());
+        model.addAttribute("totalSales", dashboardService.getTotalSales());
 
         return "dashboard";
     }
