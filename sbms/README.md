@@ -116,6 +116,15 @@ To add new service types:
 
 Update the dropdown in job-form.html and JobOrder entity if needed
 
+
+To push changes
+
+1: git remote -v
+
+to check if it is connected to github.com
+origin  https://github.com/MichaelVernGG/Service-Business-Management-System.git (fetch)
+origin  https://github.com/MichaelVernGG/Service-Business-Management-System.git (push)
+
 Author
 
 Created by Michael Vern
